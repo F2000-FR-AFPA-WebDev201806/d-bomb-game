@@ -46,7 +46,7 @@ class DBombController extends Controller {
      */
     public function registerAction(Request $request) {
         $oUser = new User();
-        $oForm = $this->createForm(\AppBundle\Form\UserConnexionType::class, $oUser);
+        $oForm = $this->createForm(\AppBundle\Form\UserRegisterType::class, $oUser);
         $oForm->handleRequest($request);
         if ($oForm->isSubmitted() && $oForm->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -54,13 +54,13 @@ class DBombController extends Controller {
             $entityManager->flush();
             return $this->redirectToRoute('homepage');
         }
-        return $this->render('inscription.html.twig', array(
+        return $this->render('@App/DBomb/register.html.twig', array(
                     'form' => $oForm->createView()
         ));
     }
 
        /**
-     * @Route("/jeu", name="jeu")
+     * @Route("/jeu", name="game")
      */
     public function jeuAction(Request $request)
     {
@@ -75,7 +75,7 @@ class DBombController extends Controller {
          ];
 
         // replace this example code with whatever you need
-        return $this->render('@App/Default/jeu.html.twig',[
+        return $this->render('@App/DBomb/game.html.twig',[
             'grid' => $aGrid
         ]);
     }
