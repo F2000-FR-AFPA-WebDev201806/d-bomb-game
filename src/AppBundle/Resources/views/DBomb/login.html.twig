@@ -1,5 +1,6 @@
-
-
-{{form_start(form)}}
-{{form_row(form.login}}
-{{form_row(form.password}}
+{%extends "base.html.twig"%}
+{% block body %}
+    {{form_start(form)}}
+    {{form_row(form.login}}
+    {{form_row(form.password}}
+{% endblock %}

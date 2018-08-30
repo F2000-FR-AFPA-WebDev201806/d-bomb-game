@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Model;
+namespace AppBundle\Form;
 
 use \Symfony\Component\Form\FormBuilderInterface;
 use \Symfony\Component\Form\Extension\Core\Type as TypeForm;
@@ -16,6 +16,12 @@ class UserRegisterType extends AbstractType {
                 ->add('mail', TypeForm\TextType::class, array('label' => 'Email'))
                 ->add('tel', TypeForm\TelType::class, array('label' => 'Tel'))
                 ->add('save', TypeForm\SubmitType::class, array('label' => 'Valider'));
+    }
+
+    public function configureOptions(OptionsResolver $resolver) {
+        $resolver->setDefaults(array(
+            'data_class' => User::class,
+        ));
     }
 
 }
