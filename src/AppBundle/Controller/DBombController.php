@@ -1,0 +1,83 @@
+<?php
+
+namespace AppBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Entity\User;
+
+class DBombController extends Controller {
+
+    /**
+     * @Route("/", name="homepage")
+     */
+    public function indexAction(Request $request) {
+        // replace this example code with whatever you need
+        return $this->render('@App/DBomb/index.html.twig', [
+        ]);
+    }
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function loginAction(Request $request) {
+        $oUser = new User();
+        $oForm = $this->createForm(\AppBundle\Form\UserConnexionType::class, $oUser);
+
+        $rep = $this->getDoctrine()->getRepository('AppBundle:User');
+        $user = $rep->findOneBy(Array(
+            'login' => $oUser->getLogin(),
+            'password' => $oUser->getPassword()
+        ));
+        if ($user) {
+            $request->setSession('user', $user);
+            return $this->redirectToRoute('game');
+        } else
+            return $this->redirectToRoute('homepage');
+
+        return $this->render('', array(
+                    'form' => $oForm->createView()
+        ));
+    }
+
+    /**
+     * @Route("/register", name="register")
+     */
+    public function registerAction(Request $request) {
+        $oUser = new User();
+        $oForm = $this->createForm(\AppBundle\Form\UserConnexionType::class, $oUser);
+        $oForm->handleRequest($request);
+        if ($oForm->isSubmitted() && $oForm->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($oUser);
+            $entityManager->flush();
+            return $this->redirectToRoute('homepage');
+        }
+        return $this->render('inscription.html.twig', array(
+                    'form' => $oForm->createView()
+        ));
+    }
+
+       /**
+     * @Route("/jeu", name="jeu")
+     */
+    public function jeuAction(Request $request)
+    {
+
+        $aGrid = [
+            [0,1,2,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0], 
+            [0,0,0,0,0,0], 
+            [0,0,0,0,0,0]
+         ];
+
+        // replace this example code with whatever you need
+        return $this->render('@App/Default/jeu.html.twig',[
+            'grid' => $aGrid
+        ]);
+    }
+
+}
