@@ -30,18 +30,33 @@ class DBombController extends Controller {
             'login' => $oUser->getLogin(),
             'password' => $oUser->getPassword()
         ));
+        if ($user) {
+            $request->setSession('user', $user);
+            return $this->redirectToRoute('game');
+        } else
+            return $this->redirectToRoute('homepage');
+
+        return $this->render('', array(
+                    'form' => $oForm->createView()
+        ));
     }
 
     /**
      * @Route("/register", name="register")
      */
     public function registerAction(Request $request) {
-        $user = new User();
-        $oForm = $this->createForm(\AppBundle\Form\UserConnexionType::class, $user);
+        $oUser = new User();
+        $oForm = $this->createForm(\AppBundle\Form\UserConnexionType::class, $oUser);
         $oForm->handleRequest($request);
         if ($oForm->isSubmitted() && $oForm->isValid()) {
-
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($oUser);
+            $entityManager->flush();
+            return $this->redirectToRoute('homepage');
         }
+        return $this->render('inscription.html.twig', array(
+                    'form' => $oForm->createView()
+        ));
     }
 
 }
