@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>la plateau de jeu </h1>
+	<table>
+		{% for line in grid %}
+				<tr>
+	               {% for cell in line %}
+	               		<td> {{ cell }}</td>
+	               {% endfor%}
+	            </tr>
+		{% endfor%}
+	</table>
+{% endblock %}
