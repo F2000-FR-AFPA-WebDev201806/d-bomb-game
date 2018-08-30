@@ -24,7 +24,7 @@ class Game {
      *
      * @ORM\Column(type="datetime")
      */
-    private $created_date;
+    private $createdDate;
 
     /**
      *
@@ -76,7 +76,7 @@ class Game {
      * @return Game
      */
     public function setCreatedDate(\DateTime $createdDate) {
-        $this->created_date = $createdDate;
+        $this->createdDate = $createdDate;
 
         return $this;
     }
@@ -87,7 +87,7 @@ class Game {
      * @return \DateTime
      */
     public function getCreatedDate() {
-        return $this->created_date;
+        return $this->createdDate;
     }
 
     /**
