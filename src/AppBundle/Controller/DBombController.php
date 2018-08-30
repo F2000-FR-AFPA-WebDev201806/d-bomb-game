@@ -59,4 +59,25 @@ class DBombController extends Controller {
         ));
     }
 
+       /**
+     * @Route("/jeu", name="jeu")
+     */
+    public function jeuAction(Request $request)
+    {
+
+        $aGrid = [
+            [0,1,2,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0], 
+            [0,0,0,0,0,0], 
+            [0,0,0,0,0,0]
+         ];
+
+        // replace this example code with whatever you need
+        return $this->render('@App/Default/jeu.html.twig',[
+            'grid' => $aGrid
+        ]);
+    }
+
 }
