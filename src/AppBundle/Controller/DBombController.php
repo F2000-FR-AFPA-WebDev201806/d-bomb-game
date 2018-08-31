@@ -25,18 +25,26 @@ class DBombController extends Controller {
         $oUser = new User();
         $oForm = $this->createForm(\AppBundle\Form\UserConnexionType::class, $oUser);
 
-        $rep = $this->getDoctrine()->getRepository('AppBundle:User');
-        $user = $rep->findOneBy(Array(
-            'login' => $oUser->getLogin(),
-            'password' => $oUser->getPassword()
-        ));
-        if ($user) {
-            $request->setSession('user', $user);
-            return $this->redirectToRoute('game');
-        } else
-            return $this->redirectToRoute('homepage');
+        $oForm->handleRequest($request);
+        if ($oForm->isSubmitted() && $oForm->isValid()) {
+            $rep = $this->getDoctrine()->getRepository('AppBundle:User');
+            $user = $rep->findOneBy(Array(
+                'login' => $oUser->getLogin(),
+                'password' => $oUser->getPassword()
+            ));
 
-        return $this->render('', array(
+            if ($user) {
+                $request->getSession()->set('user', $user);
+
+                return $this->redirectToRoute('game');
+            } else {
+                $this->addFlash(
+                        'erreur', 'login ou mot de passe inconnu!'
+                );
+            }
+        }
+
+        return $this->render('@App/DBomb/login.html.twig', array(
                     'form' => $oForm->createView()
         ));
     }
@@ -52,6 +60,9 @@ class DBombController extends Controller {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($oUser);
             $entityManager->flush();
+            $this->addFlash(
+                    'notice', 'veuillez vous connnecte pour jouer!'
+            );
             return $this->redirectToRoute('homepage');
         }
         return $this->render('@App/DBomb/register.html.twig', array(
@@ -59,24 +70,23 @@ class DBombController extends Controller {
         ));
     }
 
-       /**
+    /**
      * @Route("/jeu", name="game")
      */
-    public function jeuAction(Request $request)
-    {
+    public function jeuAction(Request $request) {
 
         $aGrid = [
-            [0,1,2,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0], 
-            [0,0,0,0,0,0], 
-            [0,0,0,0,0,0]
-         ];
+            [0, 1, 2, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0]
+        ];
 
         // replace this example code with whatever you need
-        return $this->render('@App/DBomb/game.html.twig',[
-            'grid' => $aGrid
+        return $this->render('@App/DBomb/game.html.twig', [
+                    'grid' => $aGrid
         ]);
     }
 

@@ -40,13 +40,13 @@ class User {
 
     /**
      *
-     * @ORM\Column(type="integer", length=13)
+     * @ORM\Column(type="string", length=13)
      */
     private $phone;
 
     /**
      *
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $avatar;
 
@@ -61,14 +61,12 @@ class User {
         $this->games = new ArrayCollection();
     }
 
-
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -79,8 +77,7 @@ class User {
      *
      * @return User
      */
-    public function setLogin($login)
-    {
+    public function setLogin($login) {
         $this->login = $login;
 
         return $this;
@@ -91,8 +88,7 @@ class User {
      *
      * @return string
      */
-    public function getLogin()
-    {
+    public function getLogin() {
         return $this->login;
     }
 
@@ -103,8 +99,7 @@ class User {
      *
      * @return User
      */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
 
         return $this;
@@ -115,8 +110,7 @@ class User {
      *
      * @return string
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
@@ -127,8 +121,7 @@ class User {
      *
      * @return User
      */
-    public function setMail($mail)
-    {
+    public function setMail($mail) {
         $this->mail = $mail;
 
         return $this;
@@ -139,8 +132,7 @@ class User {
      *
      * @return string
      */
-    public function getMail()
-    {
+    public function getMail() {
         return $this->mail;
     }
 
@@ -151,8 +143,7 @@ class User {
      *
      * @return User
      */
-    public function setPhone($phone)
-    {
+    public function setPhone($phone) {
         $this->phone = $phone;
 
         return $this;
@@ -163,8 +154,7 @@ class User {
      *
      * @return integer
      */
-    public function getPhone()
-    {
+    public function getPhone() {
         return $this->phone;
     }
 
@@ -175,8 +165,7 @@ class User {
      *
      * @return User
      */
-    public function setAvatar($avatar)
-    {
+    public function setAvatar($avatar) {
         $this->avatar = $avatar;
 
         return $this;
@@ -187,8 +176,7 @@ class User {
      *
      * @return string
      */
-    public function getAvatar()
-    {
+    public function getAvatar() {
         return $this->avatar;
     }
 
@@ -199,8 +187,7 @@ class User {
      *
      * @return User
      */
-    public function addGame(\AppBundle\Entity\Game $game)
-    {
+    public function addGame(\AppBundle\Entity\Game $game) {
         $this->games[] = $game;
 
         return $this;
@@ -211,8 +198,7 @@ class User {
      *
      * @param \AppBundle\Entity\Game $game
      */
-    public function removeGame(\AppBundle\Entity\Game $game)
-    {
+    public function removeGame(\AppBundle\Entity\Game $game) {
         $this->games->removeElement($game);
     }
 
@@ -221,8 +207,8 @@ class User {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGames()
-    {
+    public function getGames() {
         return $this->games;
     }
+
 }

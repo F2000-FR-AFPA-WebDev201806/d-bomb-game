@@ -5,6 +5,8 @@ namespace AppBundle\Form;
 use \Symfony\Component\Form\FormBuilderInterface;
 use \Symfony\Component\Form\Extension\Core\Type as TypeForm;
 use \Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use AppBundle\Entity\User;
 
 class UserRegisterType extends AbstractType {
 
