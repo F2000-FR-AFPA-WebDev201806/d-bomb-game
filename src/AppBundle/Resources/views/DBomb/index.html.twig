@@ -1,11 +1,26 @@
-{% extends 'base.html.twig' %}
+
+
+
 
 {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1><span>hello every bady</span> Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</h1>
-            </div>
-        </div>
-    </div>
+
+
+
+   
+    <img src="{{asset('bundles/app/images/boomb.gif')}}" alt="" />
+
+
+    <button>
+        <a href="{{ path('login')}}"> login</a>
+    </button>
+
+    <br/>
+    <br/>
+
+<button>
+    <a href="{{ path('register')}}"> inscription</a>
+
+    </button>
+
+
 {% endblock %}
