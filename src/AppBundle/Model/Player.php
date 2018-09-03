@@ -81,7 +81,7 @@ class Player {
           return $this->y; 
        } 
 
-         public Function setY($y)
+     public Function setY($y)
        {
            $this->y=$y; 
        }        
