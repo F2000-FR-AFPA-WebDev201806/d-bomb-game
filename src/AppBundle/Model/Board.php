@@ -25,17 +25,22 @@ class Board {
                 break;
         }
 
+        $this->init($x, $y);
+    }
+
+    public function init($x, $y) {
         for ($i = 0; $i < $x; $i++) {
             $this->grid[$i] = [];
 
             for ($j = 0; $j < $y; $j++) {
+                $bomb = rand(0, 10);
                 $this->grid[$i][$j] = '';
+
+                if ($bomb > 9) {
+                    $this->grid[$i][$j] = '*';
+                }
             }
         }
-    }
-
-    public function init($grid) {
-
     }
 
     function getGrid() {
