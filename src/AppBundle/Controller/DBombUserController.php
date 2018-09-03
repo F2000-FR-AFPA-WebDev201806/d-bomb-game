@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\User;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class DBombUserController extends Controller {
 
@@ -52,11 +53,14 @@ class DBombUserController extends Controller {
     /**
      * @Route("/register", name="register")
      */
-    public function registerAction(Request $request) {
+    public function registerAction(Request $request,UserPasswordEncoderInterface $encoder)  {
         $oUser = new User();
         $oForm = $this->createForm(\AppBundle\Form\UserRegisterType::class, $oUser);
+
         $oForm->handleRequest($request);
-        if ($oForm->isSubmitted() && $oForm->isValid()) {
+        if($oForm->isSubmitted() && $oForm->isValid()) {
+            $encoded=$encoder->encodePassword($oUser, $oUser->getPassword());
+            $oUser->setPassword($encoded);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($oUser);
             $entityManager->flush();
@@ -75,8 +79,6 @@ class DBombUserController extends Controller {
      * @Route("/logout", name="logout")
      */
     public function logoutAction(Request $request) {
-
-        $request->getSession()->invalidate();
     }
 
 }

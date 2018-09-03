@@ -13,7 +13,7 @@ class UserRegisterType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $builder->add('login', TypeForm\TextType::class, array('label' => 'Pseudo'))
-                ->add('password', TypeForm\TextType::class, array('label' => 'Password'))
+                ->add('password', TypeForm\PasswordType::class, array('label' => 'Password'))
                 ->add('mail', TypeForm\TextType::class, array('label' => 'Email'))
                 ->add('phone', TypeForm\TelType::class, array('label' => 'Tel'))
                 ->add('save', TypeForm\SubmitType::class, array('label' => 'Valider'));
