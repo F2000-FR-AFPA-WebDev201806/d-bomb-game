@@ -34,7 +34,7 @@ class Board {
         }
     }
 
-    public function init() {
+    public function init($grid) {
 
     }
 

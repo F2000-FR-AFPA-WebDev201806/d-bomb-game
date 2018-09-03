@@ -70,4 +70,13 @@ class DBombUserController extends Controller {
         ));
     }
 
+    /**
+     *
+     * @Route("/logout", name="logout")
+     */
+    public function logoutAction(Request $request) {
+
+        $request->getSession()->invalidate();
+    }
+
 }
