@@ -2,8 +2,22 @@
 
 namespace AppBundle\Model;
 
-class Board {
+class Board{
 
-    private $grid;
+private $grid;
+
+
+ function getGrid() {
+     return $this->grid;
+ }
+
+ function setGrid($grid) {
+     $this->grid = $grid;
+ }
+
 
 }
+    
+
+
+

@@ -1,36 +1,19 @@
 
 {% extends 'base.html.twig' %}
 {% block body %}
+ <div>
 
-    <div class="wrapper">
-        <div class="box a">A</div>
-        <div class="box b">B</div>
-        <div class="box c">C</div>
-        <div class="box d">D</div>
-        <div class="box e">E</div>
-        <div class="box f">F</div>
+    <div id="grid" >    
+    <table >
+        {%for row in grid%}
+            <tr >
+                {%for col in grid%}
+                    <td><div class="box">1</div></td> 
+                {%endfor%}    
+            </tr>    
+        {%endfor %}
+    </table>
     </div>
-<style>
+</div>
 
-
-    body {
-        margin: 40px;
-    }
-
-    .wrapper {
-        display: grid;
-        grid-template-columns: 100px 100px 100px;
-        grid-gap: 1px;
-        background-color: #fff;
-        color: #444;
-    }
-
-    .box {
-        background-color: #444;
-        color: #fff;
-        border-radius: 5px;
-        padding: 20px;
-        font-size: 150%;
-    }
-</style>
-{% endblock body %}
+{% endblock %}

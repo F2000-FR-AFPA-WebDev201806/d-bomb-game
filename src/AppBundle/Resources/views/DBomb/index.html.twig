@@ -1,26 +1,24 @@
 
-
+{%extends "base.html.twig"%}
 
 
 {% block body %}
-
-
-
+<div >
+   <div >
+       <div id="titre">
+       <img src="{{asset('bundles/app/images/dbomb1.png')}}">
+       </div>
+       <div id="image">
+        <img src="{{asset('bundles/app/images/boomb.gif')}}" alt="" />
+       </div>
+   </div>
+   <div id="button">
+    
+        <a href="{{path('login')}}"> login</a>
    
-    <img src="{{asset('bundles/app/images/boomb.gif')}}" alt="" />
-
-
-    <button>
-        <a href="{{ path('login')}}"> login</a>
-    </button>
-
-    <br/>
-    <br/>
-
-<button>
-    <a href="{{ path('register')}}"> inscription</a>
-
-    </button>
-
-
-{% endblock %}
+   
+    <a href="{{path('register')}}"> inscription</a>
+   
+</div>
+ </div>
+    {%endblock%}

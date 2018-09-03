@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\User;
 
-class DBombController extends Controller {
+class DBombUserController extends Controller {
 
     /**
      * @Route("/", name="homepage")
@@ -68,26 +68,6 @@ class DBombController extends Controller {
         return $this->render('@App/DBomb/register.html.twig', array(
                     'form' => $oForm->createView()
         ));
-    }
-
-    /**
-     * @Route("/jeu", name="game")
-     */
-    public function jeuAction(Request $request) {
-
-        $aGrid = [
-            [0, 1, 2, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0]
-        ];
-
-        // replace this example code with whatever you need
-        return $this->render('@App/DBomb/game.html.twig', [
-                    'grid' => $aGrid
-        ]);
     }
 
 }

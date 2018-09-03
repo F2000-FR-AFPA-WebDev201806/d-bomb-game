@@ -20,13 +20,13 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body>
-    {% block header %} {% endblock %}
-        {% include '@App/DBomb/header.html.twig' %}
-
-        {% block body %} {% endblock %}
-
-
-        {% include '@App/DBomb/footer.html.twig' %}
+        {% block header %} 
+            {% include '@App/DBomb/header.html.twig' %}
+        {% endblock %}
+        {% block body %} {% endblock%}
+        {% block footer %}
+            {% include '@App/DBomb/footer.html.twig' %}
+        {%endblock%}
         {% block javascripts %} {% endblock %}
     </body>
 </html>
