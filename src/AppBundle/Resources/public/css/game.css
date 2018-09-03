@@ -1,5 +1,6 @@
 body {
     margin: 40px;
+    background-color: red;   
 }
 
 .wrapper {
@@ -8,6 +9,7 @@ body {
     grid-gap: 10px;
     background-color: #fff;
     color: #444;
+    
 }
 
 .box {

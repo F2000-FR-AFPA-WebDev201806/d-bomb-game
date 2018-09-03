@@ -5,7 +5,7 @@
 
         <div id="grid" >
             <table >
-                {%for row in board.grid %}
+                {%for row in board.getGrid()%}
                     <tr >
                         {%for col in row %}
                             <td><div class="box">{{ col }}</div></td>
