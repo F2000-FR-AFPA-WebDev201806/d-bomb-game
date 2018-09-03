@@ -43,11 +43,11 @@ class Board {
         }
     }
 
-    function getGrid() {
+   public function getGrid() {
         return $this->grid;
     }
 
-    function setGrid($grid) {
+   public  function setGrid($grid) {
         $this->grid = $grid;
     }
 

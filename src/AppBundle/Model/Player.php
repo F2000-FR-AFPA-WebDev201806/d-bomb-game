@@ -59,5 +59,32 @@ class Player {
       {
         $pointsVie-=$pointsVie; 
       }
-                                             
+
+
+   public Function getPointsVie()
+       {
+          return $this->pointsVie; 
+       }   
+
+            
+   public Function getX()
+       {
+          return $this->x; 
+       } 
+      public Function setX($x)
+       {
+           $this->x=$x; 
+       }        
+
+    public Function getY()
+       {
+          return $this->y; 
+       } 
+
+         public Function setY($y)
+       {
+           $this->y=$y; 
+       }        
+                 
+    
 }
