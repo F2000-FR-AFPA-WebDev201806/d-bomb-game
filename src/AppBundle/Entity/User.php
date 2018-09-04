@@ -229,7 +229,7 @@ class User implements UserInterface {
      * @return (Role|string)[] The user roles
      */
     public function getRoles() {
-        // TODO: Implement getRoles() method.
+        return array('ROLE_USER');
     }
 
     /**

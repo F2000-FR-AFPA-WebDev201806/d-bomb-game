@@ -22,7 +22,7 @@ class DBombUserController extends Controller {
     /**
      * @Route("/login", name="login")
      */
-    public function loginAction(Request $request) {
+    public function loginAction(Request $request,UserPasswordEncoderInterface $encoder) {
         $oUser = new User();
         $oForm = $this->createForm(\AppBundle\Form\UserConnexionType::class, $oUser);
 
@@ -36,7 +36,6 @@ class DBombUserController extends Controller {
 
             if ($user) {
                 $request->getSession()->set('user', $user);
-
                 return $this->redirectToRoute('game');
             } else {
                 $this->addFlash(

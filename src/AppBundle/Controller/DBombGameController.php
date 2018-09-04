@@ -16,15 +16,34 @@ class DBombGameController extends Controller {
         $typeGame = 'debutant';
 
         $board = new Board($typeGame);
-
+        // Stocker le jeu en session
+        $session=$request->getSession();
+        $session->set('board',$board);
         // replace this example code with whatever you need
         return $this->render('@App/DBomb/game.html.twig', [
-                    'board' => $board
+                    'board' => $board,
         ]);
     }
 
-    public function isWinAction() {
-
+    /**
+     * @Route("/jeu/play/{x}/{y}", name="play")
+     */
+    public function playAction(Request $request,$x, $y) {
+        // Recuperer le jeu en session
+       $board = $request->getSession()->get('board');
+        // Jouer ("jeu"->play)
+        $board->play($x,$y);
+        // Stocker le jeu en session
+        $session=$request->getSession();
+        $session->set('board',$board);
+        
+        if ($board->isWin()){
+            $this->addFlash ('success','Bravo vous avez Gagné');
+        }else {
+           $this->addFlash ('error','Dommage vous avez Perdu');
+        }
+        
+    }
     }
 
-}
+

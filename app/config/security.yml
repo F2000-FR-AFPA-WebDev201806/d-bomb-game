@@ -26,6 +26,7 @@ security:
         check_path: login
         username_parameter: user_connexion[login]
         password_parameter: user_connexion[password]
+       
       logout:
         path: logout
         target: homepage
@@ -35,3 +36,4 @@ security:
 
       # https://symfony.com/doc/current/security/form_login_setup.html
       #form_login: ~
+    

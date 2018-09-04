@@ -10,7 +10,9 @@ class Player {
     private $max_x = null;
     private $max_y = null;
 
-    public function __construct($max_x, $max_y) {
+    public function __construct($x, $y, $max_x, $max_y) {
+        $this->x = $x;
+        $this->y = $y;
         $this->max_x = $max_x;
         $this->max_y = $max_y;
     }
@@ -18,7 +20,7 @@ class Player {
     public function isMovementPossible($x, $y) 
   {
     // case dans le tableau
-    if ($x < 0 || $y < 0 || $x > $max_x || $y > $max_y) {
+    if ($x < 0 || $y < 0 || $x > $this->max_x || $y > $this->max_y) {
         return false;
     }
 
@@ -29,7 +31,7 @@ class Player {
     }
 
 
-    // case pas
+    // case bas
     if ($y == $this->y+1 && $x == $this->x) {
         return true;
     }
@@ -57,7 +59,7 @@ class Player {
 
    public function bomb() 
       {
-        $pointsVie-=$pointsVie; 
+        $pointsVie-=1; 
       }
 
 

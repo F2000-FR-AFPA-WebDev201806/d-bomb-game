@@ -4,7 +4,8 @@
     <div class="container">
         {{ form_start(form) }}
         {{ form_row(form.login) }}
-        {{ form_row(form.password) }}
+        {{ form_row(form.password.first)}}
+        {{form_row(form.password.second)}}
         {{ form_row(form.mail) }}
         {{ form_row(form.phone) }}
         {{ form_row(form.save) }}
