@@ -22,27 +22,9 @@ class DBombUserController extends Controller {
     /**
      * @Route("/login", name="login")
      */
-    public function loginAction(Request $request,UserPasswordEncoderInterface $encoder) {
+    public function loginAction() {
         $oUser = new User();
         $oForm = $this->createForm(\AppBundle\Form\UserConnexionType::class, $oUser);
-
-        $oForm->handleRequest($request);
-        if ($oForm->isSubmitted() && $oForm->isValid()) {
-            $rep = $this->getDoctrine()->getRepository('AppBundle:User');
-            $user = $rep->findOneBy(Array(
-                'login' => $oUser->getLogin(),
-                'password' => $oUser->getPassword()
-            ));
-
-            if ($user) {
-                $request->getSession()->set('user', $user);
-                return $this->redirectToRoute('game');
-            } else {
-                $this->addFlash(
-                        'erreur', 'login ou mot de passe inconnu!'
-                );
-            }
-        }
 
         return $this->render('@App/DBomb/login.html.twig', array(
                     'form' => $oForm->createView()
@@ -60,9 +42,11 @@ class DBombUserController extends Controller {
         if($oForm->isSubmitted() && $oForm->isValid()) {
             $encoded=$encoder->encodePassword($oUser, $oUser->getPassword());
             $oUser->setPassword($encoded);
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($oUser);
             $entityManager->flush();
+            
             $this->addFlash(
                     'notice', 'veuillez vous connnecte pour jouer!'
             );
@@ -77,7 +61,7 @@ class DBombUserController extends Controller {
      *
      * @Route("/logout", name="logout")
      */
-    public function logoutAction(Request $request) {
+    public function logoutAction() {
     }
 
 }

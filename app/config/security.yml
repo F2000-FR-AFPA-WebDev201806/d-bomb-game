@@ -20,12 +20,16 @@ security:
 
     main:
       anonymous: ~
+      provider: db_provider
       # activate different ways to authenticate
+      
       form_login:
         login_path: login
-        check_path: login
+        check_path: login 
         username_parameter: user_connexion[login]
         password_parameter: user_connexion[password]
+        default_target_path: game
+        
        
       logout:
         path: logout

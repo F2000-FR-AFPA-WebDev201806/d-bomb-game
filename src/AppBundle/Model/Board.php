@@ -36,7 +36,7 @@ class Board {
 
             for ($j = 0; $j < $y; $j++) {
                 $bomb = rand(0, 10);
-                $this->grid[$i][$j]='';
+                $this->grid[$i][$j]='fas fa-apple-alt';
 
                 if ($bomb >9) {
                     
@@ -47,7 +47,8 @@ class Board {
         }
         
         $this->player = new Player(0, $x-1, $x, $y);
-        $this->grid[$x-1][0] = 'fas fa-android';
+        $this->grid[$x-1][0] = 'fab fa-android';
+         $this->grid[0][$y-1] = 'fas fa-sign-out-alt';
         
     }
     public function play($x, $y) {
