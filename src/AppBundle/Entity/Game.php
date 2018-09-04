@@ -28,7 +28,7 @@ class Game {
 
     /**
      *
-     * @ORM\Column(type="integer", length=5)
+     * @ORM\Column(type="integer")
      */
     private $score;
 
@@ -97,7 +97,7 @@ class Game {
      *
      * @return Game
      */
-    public function setScore(\Integer $score) {
+    public function setScore($score) {
         $this->score = $score;
 
         return $this;
