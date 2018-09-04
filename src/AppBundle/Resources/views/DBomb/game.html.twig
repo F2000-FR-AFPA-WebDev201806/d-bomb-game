@@ -1,19 +1,72 @@
 
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div>
+  <!-- timer-->
+   <div>
 
-        <div id="grid" >
-            <table >
-                {%for row in board.getGrid()%}
-                    <tr >
-                        {%for col in row %}
-                            <td><div class="box">{{ col }}</div></td>
-                            {%endfor%}
-                    </tr>
-                {%endfor %}
-            </table>
-        </div>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+            p {
+              text-align: right;
+              font-size: 20px;
+              margin-top: 0px;
+              margin-right: 20%; 
+            }
+            </style>
+
+
+
+            <p id="demo"></p>
+
+            <script>
+
+
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+
+                // Get todays date and time
+                var countDownDate = new Date("August 4, 2018 07:16:25").getTime();
+                var now = new Date().getTime();
+                
+                // Find the distance between now and the count down date
+                var distance = now - countDownDate;
+                
+                // Time calculations for days, hours, minutes and seconds
+               
+               
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Output the result in an element with id="demo"
+                document.getElementById("demo").innerHTML = 
+                 minutes + "m " + seconds + "s ";
+                
+                // If the count down is over, write some text 
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "EXPIRED";
+                }
+            }, 1000);
+            </script>
+   </div>
+    <div>
+        <center>
+            <div id="grid" >
+                <table >
+                    {%for row in board.getGrid()%}
+                        <tr >
+                            {%for col in row %}
+
+                                <td data-x="X" data-y="Y" ><div class="box"><span class="{{ col }}"></span></div></td>
+                          
+
+                                {%endfor%}
+                        </tr>
+                    {%endfor %}
+                </table>
+            </div>
+        </center>
     </div>
+
 
 {% endblock %}
