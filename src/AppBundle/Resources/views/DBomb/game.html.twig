@@ -49,31 +49,23 @@
             }, 1000);
             </script>
    </div>
+  <div>
+ {% for label, messages in app.flashes(['success', 'error']) %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+  </div>
     <div>
         <center>
             <div id="grid" >
-                <table >
-                    {% for row in board.getGrid() %}
-                        {% set y = loop.index0 %}
-                        <tr >
-                            {% for col in row %}
-                                {% set x = loop.index0 %}
-
-                                <td data-x="{{ x }}" data-y="{{ y }}">
-                                <div class="box"><span class="{{ col }}"></span></div>
-                                </td>                         
-
-                                {%endfor%}
-                        </tr>
-                    {%endfor %}
-                </table>
+                {% include '@App/DBomb/board.html.twig' %}
             </div>
         </center>
     </div>
-
-<div id=test>
-
-</div>
+            
     <script>
     function bouge() {
 
@@ -84,14 +76,14 @@
             url : "/d-bomb-game/web/app_dev.php/jeu/play/"+ $(this).data('x') +"/"+ $(this).data('y'),        
             error : function  (errorData)  {     },
             success : function (data){
-                  $('#test').html(data); 
+                  $('#grid').html(data); 
             }        
           });   
     }
 
     $(document).ready( function () {
 
-        $("td").on( "click", bouge); 
+        $('#grid').on('click', 'td', bouge); 
 
 
     });

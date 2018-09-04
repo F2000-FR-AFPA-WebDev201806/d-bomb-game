@@ -48,36 +48,32 @@ class Board {
         
         $this->player = new Player(0, $x-1, $x, $y);
         $this->grid[$x-1][0] = 'fab fa-android';
-         $this->grid[0][$y-1] = 'fas fa-sign-out-alt';
-        
+        $this->grid[0][$y-1] = 'fas fa-sign-out-alt';
     }
+    
     public function play($x, $y) {
         if ($this->player->isMovementPossible($x, $y)) {
-            $this->player->deplacer($x, $y);
-            
-            if ($this->grid[$y][$x] === 'fas fa-bomb') {
+            if ($this->grid[$y][$x] == 'fas fa-bomb') {
                 $this->player->bomb();
             }
+            
+            $this->grid[$this->player->getY()][$this->player->getX()] = '';            
+            $this->player->deplacer($x, $y);
+            $this->grid[$this->player->getY()][$this->player->getX()] = 'fab fa-android';
         }
         
         return $this->isWin();
     }
    public function isWin(){
-       
-       if(($this->player->getX()==0 && $this->player->getY()== count($this->grid)-1) && $this->player->getPointsVie()>0 ){
+       if(($this->player->getX() == count($this->grid)-1) && $this->player->getY()== 0 && $this->player->getPointsVie() > 0 ){
           return true; 
-       }else{
-        return $this->isDead();
-      }
-       
+       }       
        
    }
     public function isDead(){
-  
-       if ($this->player->getPointsVie()==0){
-           return false;
-       }
+        return ($this->player->getPointsVie() <= 0);
    }
+   
    public function getGrid() {
         return $this->grid;
     }
@@ -85,5 +81,13 @@ class Board {
    public  function setGrid($grid) {
         $this->grid = $grid;
     }
+    function getPlayer() {
+        return $this->player;
+    }
+
+    function setPlayer($player) {
+        $this->player = $player;
+    }
+
 
 }

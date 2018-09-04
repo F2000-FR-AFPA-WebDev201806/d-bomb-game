@@ -59,7 +59,7 @@ class Player {
 
    public function bomb() 
       {
-        $pointsVie-=1; 
+        $this->pointsVie -= 1; 
       }
 
 
