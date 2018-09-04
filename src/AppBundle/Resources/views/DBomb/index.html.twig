@@ -5,22 +5,25 @@
 {% block body %}
 <div>
     <div>
-        
+       <center>
        <div id="titre">
        <img src="{{asset('bundles/app/images/dbomb1.png')}}">
+       </center>
        </div>
+       <center>
        <div id="image">
         <img src="{{asset('bundles/app/images/boomb.gif')}}" alt="" />
        </div>
+       </center>
        
    </div>
    <div id="button">
-    
-        <a href="{{path('login')}}"> login</a>
+    <center>
+        <a href="{{path('login')}}" class="link"> login</a>
    
    
-    <a href="{{path('register')}}"> inscription</a>
-   
+    <a href="{{path('register')}}"class="link"> inscription</a>
+   </center>
 </div>
  </div>
-    {%endblock%}
+{%endblock%}
