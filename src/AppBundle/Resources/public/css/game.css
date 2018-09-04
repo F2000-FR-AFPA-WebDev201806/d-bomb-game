@@ -1,8 +1,25 @@
 body {
     margin: 40px;
-    background-color: red;   
+   
 }
 
+.fa-apple-alt:before {
+    content: "\f5d1";
+    color: green;
+}
+
+.fa-android:before {
+    content: "\f17b";
+    color: #7f1616;
+}
+.fa-sign-out-alt:before {
+    content: "\f2f5";
+    color: #7f1616;
+}
+.fa-bomb:before {
+    content: "\f1e2";
+    color: black;
+}
 .wrapper {
     display: grid;
     grid-template-columns: 100px 100px 100px;
@@ -18,4 +35,8 @@ body {
     border-radius: 5px;
     padding: 20px;
     font-size: 150%;
+}
+table
+{
+    margin-bottom: 40px; 
 }
