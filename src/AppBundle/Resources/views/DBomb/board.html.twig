@@ -1,0 +1,24 @@
+NB Points de vie : {{ board.player.pointsVie }}
+
+
+{% if board.isWin %}
+    GAGNE !!!
+{% elseif board.isDead %}
+    MORT !!
+{% endif %}
+
+<table>
+    {% for row in board.getGrid() %}
+        {% set y = loop.index0 %}
+        <tr >
+            {% for col in row %}
+                {% set x = loop.index0 %}
+
+                <td data-x="{{ x }}" data-y="{{ y }}">
+                <div class="box"><span class="{{ col }}"></span></div>
+                </td>                         
+
+                {%endfor%}
+        </tr>
+    {%endfor %}
+</table>

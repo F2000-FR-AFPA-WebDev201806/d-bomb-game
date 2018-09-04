@@ -34,15 +34,11 @@ class DBombGameController extends Controller {
         // Jouer ("jeu"->play)
         $board->play($x,$y);
         // Stocker le jeu en session
-        $session=$request->getSession();
-        $session->set('board',$board);
+        $request->getSession()->set('board',$board);
         
-        if ($board->isWin()){
-            $this->addFlash ('success','Bravo vous avez Gagné');
-        }else {
-           $this->addFlash ('error','Dommage vous avez Perdu');
-        }
-        
+        return $this->render('@App/DBomb/board.html.twig', [
+                    'board' => $board,
+        ]);
     }
     }
 
