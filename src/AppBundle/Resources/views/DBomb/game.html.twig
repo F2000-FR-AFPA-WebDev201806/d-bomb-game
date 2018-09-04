@@ -53,12 +53,15 @@
         <center>
             <div id="grid" >
                 <table >
-                    {%for row in board.getGrid()%}
+                    {% for row in board.getGrid() %}
+                        {% set y = loop.index0 %}
                         <tr >
-                            {%for col in row %}
+                            {% for col in row %}
+                                {% set x = loop.index0 %}
 
-                                <td data-x="X" data-y="Y" ><div class="box"><span class="{{ col }}"></span></div></td>
-                          
+                                <td data-x="{{ x }}" data-y="{{ y }}">
+                                <div class="box"><span class="{{ col }}"></span></div>
+                                </td>                         
 
                                 {%endfor%}
                         </tr>
@@ -68,5 +71,29 @@
         </center>
     </div>
 
+<div id=test>
 
+</div>
+    <script>
+    function bouge() {
+
+        $.ajax({
+
+            async: "true",
+            type: "GET",
+            url : "/d-bomb-game/web/app_dev.php/jeu/play/"+ $(this).data('x') +"/"+ $(this).data('y'),        
+            error : function  (errorData)  {     },
+            success : function (data){
+                  $('#test').html(data); 
+            }        
+          });   
+    }
+
+    $(document).ready( function () {
+
+        $("td").on( "click", bouge); 
+
+
+    });
+    </script>
 {% endblock %}
