@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping\ManyToMany;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Game")
+ * @ORM\Table(name="dbomb_game")
  */
 class Game {
 
